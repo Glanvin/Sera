@@ -30,11 +30,15 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(user.getText().toString().isEmpty() && pass.getText().toString().isEmpty())
-                  Toast.makeText(MainActivity.this, "Input Field(s) are empty!", Toast.LENGTH_SHORT).show();
-                //TODO: Check if user is registered
-                if(user.getText().toString() == FileHandler.getInstance().onRead("username.txt") && pass.getText().toString() == FileHandler.getInstance().onRead("password.txt"))
-                    Toast.makeText(MainActivity.this, "Sup!", Toast.LENGTH_LONG).show();;
+                if(user.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Input Field(s) are empty!", Toast.LENGTH_SHORT).show();
+                }
+                //Check if user is registered
+                if(user.getText().toString() == FileHandler.getInstance().onRead("username.txt") && pass.getText().toString() == FileHandler.getInstance().onRead("password.txt")) {
+                    Toast.makeText(MainActivity.this, "Sup!", Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(MainActivity.this, "User invalid", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
