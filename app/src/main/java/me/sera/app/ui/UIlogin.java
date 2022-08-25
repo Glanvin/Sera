@@ -9,8 +9,9 @@ import me.sera.app.*;
 public class UIlogin extends AppCompatActivity {
 
     public String email;
-    public String password;
+    public String username;
     public String uniqueID;
+    public String password;
 
 
     @Override
