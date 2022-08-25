@@ -11,7 +11,6 @@ public class FileHandler {
 
     private static FileHandler instance;
     private MainActivity core;
-    private static File file;
 
     public static FileHandler getInstance() {
         return instance;
@@ -33,11 +32,11 @@ public class FileHandler {
 
     }
 
-    public void onWrite(String fname, String context, String filetype) {
+    public void onWrite(String fname, String context) {
 
-        file = core.getApplication().getFilesDir();
+        File file = core.getApplication().getFilesDir();
         try {
-            FileOutputStream output = new FileOutputStream(new File(fname + filetype, context));
+            FileOutputStream output = new FileOutputStream(new File(fname, context));
             output.write(context.getBytes());
             output.close();
         } catch (Exception e) {
