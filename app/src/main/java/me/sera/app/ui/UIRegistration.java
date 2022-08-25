@@ -2,6 +2,7 @@ package me.sera.app.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -13,7 +14,7 @@ import me.sera.app.MainActivity;
 import me.sera.app.R;
 import me.sera.app.utils.FileHandler;
 
-public class RegisUI extends AppCompatActivity {
+public class UIRegistration extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +29,8 @@ public class RegisUI extends AppCompatActivity {
         regis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (user.getText().toString().isEmpty() && pass.getText().toString().isEmpty()) {
-                    Toast.makeText(RegisUI.this, "Input Field(s) are empty!", Toast.LENGTH_SHORT).show();
-
-                }else {
-                    FileHandler.getInstance().onWrite("username", user.getText().toString(), ".txt");
-                    FileHandler.getInstance().onWrite("password", pass.getText().toString(), ".txt");
-                }
+                Toast.makeText(UIRegistration.this, "Oof", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
