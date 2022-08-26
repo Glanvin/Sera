@@ -21,19 +21,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView user = (TextView) findViewById(R.id.user);
-        TextView pass = (TextView) findViewById(R.id.pass);
+        TextView user = findViewById(R.id.user);
+        TextView pass = findViewById(R.id.pass);
 
-        MaterialButton regis = (MaterialButton) findViewById(R.id.regis);
-        MaterialButton login = (MaterialButton) findViewById(R.id.login);
+        MaterialButton regis = findViewById(R.id.regist);
+        MaterialButton login = findViewById(R.id.login);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (user.getText().toString().equals("Admin") && pass.getText().toString().equals("admin")) {
                     startActivity(new Intent(MainActivity.this, UIChatHome.class));
-                    Toast.makeText(MainActivity.this, "Logged!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "Logged!", Toast.LENGTH_SHORT).show();
 
+                }else {
+                    Toast.makeText(MainActivity.this, "Empty Fields!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

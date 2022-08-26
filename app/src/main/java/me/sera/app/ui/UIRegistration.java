@@ -21,8 +21,8 @@ public class UIRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regisui);
 
-        TextView user = findViewById(R.id.user);
-        TextView pass = findViewById(R.id.pass);
+        TextView user = findViewById(R.id.ruser);
+        TextView pass = findViewById(R.id.rpass);
 
         MaterialButton regis = findViewById(R.id.regis);
 
