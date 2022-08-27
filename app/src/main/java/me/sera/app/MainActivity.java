@@ -10,9 +10,8 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
-import me.sera.app.ui.UIChatHome;
-import me.sera.app.ui.UIRegistration;
-import me.sera.app.utils.FileHandler;
+import me.sera.app.ui.*;
+import me.sera.app.utils.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        errands();
+
+    }
+
+    private void errands() {
 
         TextView user = findViewById(R.id.user);
         TextView pass = findViewById(R.id.pass);
@@ -30,12 +34,11 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (user.getText().toString().equals("Admin") && pass.getText().toString().equals("admin")) {
+                if (user.getText().toString().equalsIgnoreCase("Admin")  && pass.getText().toString().equals("admin")) {
                     startActivity(new Intent(MainActivity.this, UIChatHome.class));
-                    //Toast.makeText(MainActivity.this, "Logged!", Toast.LENGTH_SHORT).show();
 
                 }else {
-                    Toast.makeText(MainActivity.this, "Empty Fields!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Empty field(s)!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -46,5 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, UIRegistration.class));
             }
         });
+
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -17,6 +18,8 @@ public class UIChatHome extends AppCompatActivity {
         setContentView(R.layout.activity_uichat_home);
 
         MaterialButton button = findViewById(R.id.mainui);
+
+        Toast.makeText(UIChatHome.this, "Logged!", Toast.LENGTH_SHORT).show();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

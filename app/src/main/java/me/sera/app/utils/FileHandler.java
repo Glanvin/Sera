@@ -35,6 +35,7 @@ public class FileHandler {
     public void onWrite(String fname, String context) {
 
         File file = core.getApplication().getFilesDir();
+
         try {
             FileOutputStream output = new FileOutputStream(new File(fname, context));
             output.write(context.getBytes());

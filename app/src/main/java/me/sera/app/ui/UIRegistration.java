@@ -12,9 +12,11 @@ import com.google.android.material.button.MaterialButton;
 
 import me.sera.app.MainActivity;
 import me.sera.app.R;
+import me.sera.app.events.RegisterEvent;
 import me.sera.app.utils.FileHandler;
+import me.sera.app.utils.State;
 
-public class UIRegistration extends AppCompatActivity {
+public class UIRegistration extends AppCompatActivity implements RegisterEvent {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +31,32 @@ public class UIRegistration extends AppCompatActivity {
         regis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(UIRegistration.this, "Oof", Toast.LENGTH_SHORT).show();
-                finish();
+                if((user.getText().toString().isEmpty() && pass.getText().toString().isEmpty())) {
+                    onRegister(user.getText().toString(), State.FAILED);
+                }else {
+                    onRegister(user.getText().toString(), State.COMPLETE);
+                }
             }
         });
+    }
+
+    @Override
+    public void onRegister(String args, State state) {
+
+        State s = state;
+        switch (s) {
+            case COMPLETE:
+                Toast.makeText(this, "Registered as " + args, Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+            case FAILED:
+                Toast.makeText(this, "Failed to register", Toast.LENGTH_SHORT).show();
+                break;
+            case aResgitered:
+                Toast.makeText(this, "User Already registered", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+
+        }
     }
 }
