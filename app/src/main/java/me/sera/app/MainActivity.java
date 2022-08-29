@@ -18,9 +18,6 @@ import me.sera.app.utils.SeraViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    public TabLayout tabLayout;
-    public ViewPager2 viewPager2;
-    public SeraViewPagerAdapter seraViewPagerAdapter;
 
 
     @Override
@@ -28,44 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         errands();
-        fragments();
 
     }
 
-    private void fragments() {
-
-        tabLayout = findViewById(R.id.home_tab);
-        viewPager2 = findViewById(R.id.view_pager);
-        seraViewPagerAdapter = new SeraViewPagerAdapter(this);
-        viewPager2.setAdapter(seraViewPagerAdapter);
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager2.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-
-                tabLayout.getTabAt(position).select();
-            }
-        });
-
-    }
 
     private void errands() {
 

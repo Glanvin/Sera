@@ -13,7 +13,7 @@ import me.sera.app.ui.fragments.People;
 
 public class SeraViewPagerAdapter extends FragmentStateAdapter {
 
-    private final int itemcount = 3;
+    public final static String[] titles = {"Chat", "People", "History"};
 
     public SeraViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -27,15 +27,16 @@ public class SeraViewPagerAdapter extends FragmentStateAdapter {
                 return new Chat();
             case 1:
                 return new People();
-            case 3:
+            case 2:
                 return new History();
-            default:
-                return new Chat();
+
         }
+
+        return new Chat();
     }
 
     @Override
     public int getItemCount() {
-        return itemcount;
+        return titles.length;
     }
 }
