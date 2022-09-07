@@ -1,20 +1,17 @@
 package me.sera.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.tabs.TabLayout;
+import androidx.appcompat.app.AppCompatActivity;
 
-import me.sera.app.ui.*;
-import me.sera.app.ui.fragments.*;
-import me.sera.app.utils.SeraViewPagerAdapter;
+import com.google.android.material.button.MaterialButton;
+
+import me.sera.app.ui.UIHomePage;
+import me.sera.app.ui.UIRegistration;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,8 +40,12 @@ public class MainActivity extends AppCompatActivity {
                 if (user.getText().toString().equalsIgnoreCase("Admin")  && pass.getText().toString().equals("admin")) {
                     startActivity(new Intent(MainActivity.this, UIHomePage.class));
 
-                }else {
-                    Toast.makeText(MainActivity.this, "Empty field(s)!", Toast.LENGTH_SHORT).show();
+                }else if(user.getText().toString().isEmpty() || pass.getText().toString().isEmpty()){
+                    Toast.makeText(MainActivity.this, "Missing field(s)!", Toast.LENGTH_SHORT).show();
+                    user.setText("");
+                    pass.setText("");
+                } else {
+                    Toast.makeText(MainActivity.this, "Input(s) not valid in!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

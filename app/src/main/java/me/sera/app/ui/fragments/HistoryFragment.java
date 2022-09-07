@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import me.sera.app.R;
 
-public class History extends Fragment {
+public class HistoryFragment extends Fragment {
 
 
     @Override

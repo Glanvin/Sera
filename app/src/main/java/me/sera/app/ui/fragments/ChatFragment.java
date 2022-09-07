@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import me.sera.app.R;
 
-public class Chat extends Fragment {
+public class ChatFragment extends Fragment {
 
     private ArrayList<String> chats = new ArrayList<>();
 

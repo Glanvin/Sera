@@ -4,5 +4,5 @@ public enum State {
 
 
     //STATES
-    PASSWORD,EMAIL,USERNAME,PENDING,COMPLETE,FAILED,INVALID, aResgitered
+    COMPLETE,FAILED,INVALID, aRegistered
 }

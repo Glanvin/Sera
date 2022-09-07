@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import me.sera.app.R;
 
-public class People extends Fragment {
+public class PeopleFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

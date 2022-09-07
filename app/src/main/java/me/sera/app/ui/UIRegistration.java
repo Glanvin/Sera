@@ -13,7 +13,6 @@ import com.google.android.material.button.MaterialButton;
 import me.sera.app.MainActivity;
 import me.sera.app.R;
 import me.sera.app.events.RegisterEvent;
-import me.sera.app.utils.FileHandler;
 import me.sera.app.utils.State;
 
 public class UIRegistration extends AppCompatActivity implements RegisterEvent {
@@ -41,6 +40,11 @@ public class UIRegistration extends AppCompatActivity implements RegisterEvent {
     }
 
     @Override
+    public void onRegister(String email, String username, String password) {
+
+    }
+
+    @Override
     public void onRegister(String args, State state) {
 
         State s = state;
@@ -52,11 +56,16 @@ public class UIRegistration extends AppCompatActivity implements RegisterEvent {
             case FAILED:
                 Toast.makeText(this, "Failed to register", Toast.LENGTH_SHORT).show();
                 break;
-            case aResgitered:
+            case aRegistered:
                 Toast.makeText(this, "User Already registered", Toast.LENGTH_SHORT).show();
                 break;
             default:
 
         }
+    }
+
+    @Override
+    public void onLogin(String email, String password) {
+
     }
 }
