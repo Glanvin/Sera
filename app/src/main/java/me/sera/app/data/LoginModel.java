@@ -1,13 +1,16 @@
 package me.sera.app.data;
 
+import android.util.Patterns;
+
 import me.sera.app.events.LMEvent;
 import me.sera.app.utils.State;
 
 public class LoginModel implements LMEvent {
 
-    public String username;
-    public String email;
-    public String password;
+    private String username;
+    private String email;
+    private String password;
+    private final int minPass = 5;
 
     @Override
     public void onRegister(String email, String username, String password) throws Exception {
@@ -17,6 +20,22 @@ public class LoginModel implements LMEvent {
     @Override
     public void onLogin(String email, String password) {
 
+    }
+
+    private boolean isEmailValid(String email) {
+        if(email == null) {
+            return false;
+        }
+
+        if (email.contains("@")) {
+            return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        } else {
+            return !email.trim().isEmpty();
+        }
+    }
+
+    private boolean isPasswordValid(String password) {
+        return password != null && password.trim().length() > minPass;
     }
 
     public String getEmail() {
