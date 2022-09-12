@@ -2,17 +2,10 @@ package me.sera.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.button.MaterialButton;
-
-import me.sera.app.ui.UIHomePage;
-import me.sera.app.ui.UILoginRegister;
+import me.sera.app.ui.UILogin;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(MainActivity.this, UILoginRegister.class));
+        startActivity(new Intent(MainActivity.this, UILogin.class));
         finish();
 
     }
