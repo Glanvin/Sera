@@ -27,6 +27,7 @@ public class UILogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UILogin.this, UIRegistration.class));
+                finish();
             }
         });
 
