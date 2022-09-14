@@ -1,5 +1,6 @@
 package me.sera.app.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +14,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import me.sera.app.R;
+import me.sera.app.ui.UIChatRoom;
 
 public class ChatFragment extends Fragment {
 
-    private ArrayList<String> chats = new ArrayList<>();
+    private Intent intent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

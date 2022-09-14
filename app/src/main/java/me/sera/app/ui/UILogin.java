@@ -2,12 +2,18 @@ package me.sera.app.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import es.dmoral.toasty.Toasty;
 import me.sera.app.R;
@@ -15,22 +21,19 @@ import me.sera.app.R;
 public class UILogin extends AppCompatActivity {
 
 
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_login);
-        newErrands();
 
-    }
-
-    private void newErrands() {
+        auth = FirebaseAuth.getInstance();
 
         String adminUSER = getString(R.string.tempname);
         String adminPASS = getString(R.string.temppass);
 
         TextView newUSER = (TextView) findViewById(R.id.textView4);
-        TextView email = (TextView) findViewById(R.id.inputEMAIL);
-        TextView password = (TextView) findViewById(R.id.inputPASSWORD);
 
         MaterialButton login = (MaterialButton) findViewById(R.id.login);
 
@@ -45,19 +48,42 @@ public class UILogin extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(password.getText().toString().trim().isEmpty() && email.getText().toString().trim().isEmpty()) {
-                    Toasty.error(UILogin.this, R.string.login_failed, Toasty.LENGTH_SHORT).show();
-                    return;
-                } else if(!(password.getText().toString().trim().equalsIgnoreCase(adminPASS) && email.getText().toString().trim().equalsIgnoreCase(adminUSER))) {
-                    Toasty.error(UILogin.this, R.string.input_invalid, Toasty.LENGTH_SHORT).show();
-                    return;
-                }
-                if(password.getText().toString().trim().contains(adminPASS) && email.getText().toString().trim().equalsIgnoreCase(adminUSER)) {
-                    startActivity(new Intent(UILogin.this, UIHomePage.class));
-                    finish();
-                }
+                onLogin();
             }
         });
+
+    }
+
+    private void onLogin() {
+        String invalidE = getString(R.string.invalid_email);
+        String invalidP = getString(R.string.invalid_password);
+
+        TextView Lemail = (TextView) findViewById(R.id.inputEMAIL);
+        TextView Lpassword = (TextView) findViewById(R.id.inputPASSWORD);
+
+        String email = Lemail.getText().toString();
+        String password = Lpassword.getText().toString();
+
+        if(TextUtils.isEmpty(email)) {
+            Lemail.setError(invalidE);
+            Lemail.requestFocus();
+        } else if(TextUtils.isEmpty(password)) {
+            Lpassword.setError(invalidP);
+            Lpassword.requestFocus();
+        } else {
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()) {
+                        startActivity(new Intent(UILogin.this, UIHomePage.class));
+                        Toasty.success(UILogin.this, R.string.login_success, Toasty.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toasty.success(UILogin.this, R.string.login_failed + " " + task.getException().getMessage(), Toasty.LENGTH_SHORT).show();;
+                    }
+                }
+            });
+        }
 
     }
 
