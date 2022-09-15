@@ -79,7 +79,7 @@ public class UILogin extends AppCompatActivity {
                         Toasty.success(UILogin.this, R.string.login_success, Toasty.LENGTH_SHORT).show();
                         finish();
                     } else {
-                        Toasty.success(UILogin.this, R.string.login_failed + " " + task.getException().getMessage(), Toasty.LENGTH_SHORT).show();;
+                        Toasty.error(UILogin.this, R.string.login_failed + " " + task.getException().getMessage(), Toasty.LENGTH_SHORT).show();;
                     }
                 }
             });
