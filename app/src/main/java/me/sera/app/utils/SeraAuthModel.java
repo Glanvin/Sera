@@ -64,7 +64,7 @@ public class SeraAuthModel {
         sdb.addUserToDatabase(username, email, Authority.ADMIN);
     }
 
-    public void signInWithEmail(Context context, @NonNull String email, @NonNull String password,) {
+    public void signInWithEmail(Context context, @NonNull String email, @NonNull String password) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
