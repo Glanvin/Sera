@@ -9,6 +9,7 @@ public class ChatModel {
     public String message;
     public long timestamp;
 
+
     public ChatModel() {}
 
     public ChatModel(String sender, String receiver, String senderUid, String receiverUid, String message, long timestamp) {

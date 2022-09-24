@@ -18,8 +18,6 @@ import me.sera.app.ui.UIChatRoom;
 
 public class ChatFragment extends Fragment {
 
-    private Intent intent;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_chat, container, false);

@@ -2,7 +2,6 @@ package me.sera.app.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import es.dmoral.toasty.Toasty;
 import me.sera.app.R;
+import me.sera.app.utils.SeraAuthModel;
 
 public class UILogin extends AppCompatActivity {
 
@@ -64,26 +64,9 @@ public class UILogin extends AppCompatActivity {
         String email = Lemail.getText().toString();
         String password = Lpassword.getText().toString();
 
-        if(TextUtils.isEmpty(email)) {
-            Lemail.setError(invalidE);
-            Lemail.requestFocus();
-        } else if(TextUtils.isEmpty(password)) {
-            Lpassword.setError(invalidP);
-            Lpassword.requestFocus();
-        } else {
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()) {
-                        startActivity(new Intent(UILogin.this, UIHomePage.class));
-                        Toasty.success(UILogin.this, R.string.login_success, Toasty.LENGTH_SHORT).show();
-                        finish();
-                    } else {
-                        Toasty.error(UILogin.this, R.string.login_failed + " " + task.getException().getMessage(), Toasty.LENGTH_SHORT).show();;
-                    }
-                }
-            });
-        }
+        SeraAuthModel sam = new SeraAuthModel();
+
+        sam.signInWithEmail(UILogin.this, email, password);
 
     }
 
